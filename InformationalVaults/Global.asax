@@ -1,0 +1,1 @@
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="InformationalVaults.MvcApplication" Language="C#" %>
