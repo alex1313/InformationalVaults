@@ -1,0 +1,16 @@
+﻿@model InformationalVaults.Models.LogOnViewModel
+
+@{
+    ViewBag.Title = "Login page";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Login", "Account"))
+{
+    @Html.EditorForModel()
+
+    @Html.ValidationMessage("")
+
+    <input class="btn btn-default" type="submit" value="Log in" />
+}

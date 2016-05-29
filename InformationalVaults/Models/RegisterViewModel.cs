@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class LogOnViewModel
+    public class RegisterViewModel
     {
         [Required]
         [DataType(DataType.EmailAddress)]
@@ -12,8 +12,5 @@
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-
-        [Display(Name = "Remember me")]
-        public bool RememberMe { get; set; }
     }
 }
