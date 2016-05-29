@@ -7,6 +7,7 @@
     using System.Web.Routing;
     using DataAccess;
     using DataAccess.Migrations;
+    using Installers;
 
     public class MvcApplication : HttpApplication
     {
@@ -16,6 +17,8 @@
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            IocContainer.Setup();
 
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<InformationalVaultsContext, MigrationsConfiguration>());
         }

@@ -1,30 +1,42 @@
-﻿using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace InformationalVaults.Controllers
 {
-    using DataAccess;
+    using System.Linq;
+    using DataAccess.UnitOfWork;
 
     [Authorize]
     public class VaultController : Controller
     {
-        //TODO: Unit of Work
-        private readonly InformationalVaultsContext _db = new InformationalVaultsContext();
+        private readonly IUnitOfWorkFactory _unitOfWorkFactory;
+
+        public VaultController(IUnitOfWorkFactory unitOfWorkFactory)
+        {
+            _unitOfWorkFactory = unitOfWorkFactory;
+        }
 
         public ActionResult Index()
         {
-            var allVaults = _db.Vaults.AsEnumerable();
+            using (var uow = _unitOfWorkFactory.Create())
+            {
+                var allVaults = uow.VaultRepository
+                    .GetAll()
+                    .ToArray();
 
-            return View(allVaults);
+                return View(allVaults);
+            }
         }
 
         public ActionResult Details(int id)
         {
-            var vault = _db.Vaults.FirstOrDefault(x => x.Id == id);
+            using (var uow = _unitOfWorkFactory.Create())
+            {
+                var vault = uow.VaultRepository.GetById(id);
 
-            return vault != null
-                ? View(vault)
-                : View("Error");
+                return vault != null
+                    ? View(vault)
+                    : View("Error");
+            }
         }
     }
 }
