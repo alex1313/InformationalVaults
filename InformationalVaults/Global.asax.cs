@@ -6,6 +6,7 @@
     using System.Web.Optimization;
     using System.Web.Routing;
     using DataAccess;
+    using DataAccess.Migrations;
 
     public class MvcApplication : HttpApplication
     {
@@ -16,7 +17,7 @@
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<InformationalVaultsContext>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<InformationalVaultsContext, MigrationsConfiguration>());
         }
     }
-}
+}   

@@ -50,6 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InformationalVaultsContext.cs" />
+    <Compile Include="Migrations\201605291205122_InitialCreate.cs" />
+    <Compile Include="Migrations\201605291205122_InitialCreate.Designer.cs">
+      <DependentUpon>201605291205122_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\MigrationsConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +66,11 @@
       <Project>{CC94283D-7452-4663-821E-B538CFA7276D}</Project>
       <Name>DomainModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201605291205122_InitialCreate.resx">
+      <DependentUpon>201605291205122_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
