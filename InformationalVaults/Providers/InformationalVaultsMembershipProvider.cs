@@ -98,17 +98,8 @@
             {
                 using (var db = new InformationalVaultsContext())
                 {
-                    var user = new User
-                    {
-                        Email = email,
-                        Password = Crypto.HashPassword(password)
-                    };
-
-                    var role = db.Roles.Find(2);
-                    if (role != null)
-                    {
-                        user.RoleId = 2;
-                    }
+                    var role = db.Roles.First(x => x.Name.ToLower() == "admin");
+                    var user = new User(email, password, role);
 
                     db.Users.Add(user);
                     db.SaveChanges();

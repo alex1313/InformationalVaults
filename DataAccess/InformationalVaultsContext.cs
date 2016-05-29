@@ -8,6 +8,7 @@
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Vault> Vaults { get; set; }
+        public DbSet<VaultAccessLog> VaultAccessLogs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

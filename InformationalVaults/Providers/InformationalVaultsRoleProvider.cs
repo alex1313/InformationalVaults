@@ -26,7 +26,7 @@
 
                     if (user != null)
                     {
-                        var userRole = db.Roles.FirstOrDefault(x => x.Id == user.RoleId);
+                        var userRole = db.Roles.FirstOrDefault(x => x.Id == user.Role.Id);
 
                         if (userRole != null)
                         {
@@ -44,7 +44,7 @@
 
         public override void CreateRole(string roleName)
         {
-            var newRole = new Role {Name = roleName};
+            var newRole = new Role(roleName);
             var db = new InformationalVaultsContext();
             db.Roles.Add(newRole);
             db.SaveChanges();
@@ -62,7 +62,7 @@
 
                     if (user != null)
                     {
-                        var userRole = db.Roles.Find(user.RoleId);
+                        var userRole = db.Roles.Find(user.Role.Id);
 
                         if (userRole != null && userRole.Name == roleName)
                         {
