@@ -6,21 +6,23 @@
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+            bundles.Add(new ScriptBundle("~/Scripts/jquery").Include(
                 "~/Scripts/jquery-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+            bundles.Add(new ScriptBundle("~/Scripts/jqueryval").Include(
                 "~/Scripts/jquery.validate*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
+            bundles.Add(new ScriptBundle("~/Scripts/modernizr").Include(
                 "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+            bundles.Add(new ScriptBundle("~/Scripts/bootstrap").Include(
                 "~/Scripts/bootstrap.js",
                 "~/Scripts/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Content/bootstrap.css",
+            bundles.Add(new StyleBundle("~/Styles/bootstrap").Include(
+                "~/Content/bootstrap.css"));
+
+            bundles.Add(new StyleBundle("~/Styles/site").Include(
                 "~/Content/site.css"));
         }
     }

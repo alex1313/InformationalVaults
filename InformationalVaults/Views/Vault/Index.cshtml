@@ -1,0 +1,25 @@
+﻿@model IEnumerable<DomainModel.Entities.Vault>
+
+@{
+    ViewBag.Title = "Vaults";
+}
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>@Html.DisplayNameFor(x => x.FirstOrDefault().Id)</th>
+        <th>@Html.DisplayNameFor(x => x.FirstOrDefault().Name)</th>
+        <th>@Html.DisplayNameFor(x => x.FirstOrDefault().Description)</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var vault in Model)
+    {
+        <tr>
+            <td>@vault.Id</td>
+            <td>@Html.ActionLink(vault.Name, "Details", new { id = vault.Id.ToString() })</td>
+            <td>@vault.Description</td>
+        </tr>
+    }
+    </tbody>
+</table>
