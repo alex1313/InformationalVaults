@@ -1,12 +1,12 @@
-﻿using System.Web.Mvc;
-
-namespace InformationalVaults.Controllers
+﻿namespace InformationalVaults.Controllers
 {
-    using System.Linq;
+    using System.Web.Mvc;
+    using CQRS.Queries.Criteria;
     using DataAccess.UnitOfWork;
+    using DomainModel.Entities;
 
     [Authorize]
-    public class VaultController : Controller
+    public class VaultController : BaseController
     {
         private readonly IUnitOfWorkFactory _unitOfWorkFactory;
 
@@ -17,26 +17,20 @@ namespace InformationalVaults.Controllers
 
         public ActionResult Index()
         {
-            using (var uow = _unitOfWorkFactory.Create())
-            {
-                var allVaults = uow.VaultRepository
-                    .GetAll()
-                    .ToArray();
+            var vaults = QueryBuilder.ResultingIn<Vault[]>()
+                .Execute(new EmptyCriterion());
 
-                return View(allVaults);
-            }
+            return View(vaults);
         }
 
         public ActionResult Details(int id)
         {
-            using (var uow = _unitOfWorkFactory.Create())
-            {
-                var vault = uow.VaultRepository.GetById(id);
+            var vault = QueryBuilder.ResultingIn<Vault>()
+                .Execute(new IdCriterion(id));
 
-                return vault != null
-                    ? View(vault)
-                    : View("Error");
-            }
+            return vault != null
+                ? View(vault)
+                : View("Index");
         }
     }
 }

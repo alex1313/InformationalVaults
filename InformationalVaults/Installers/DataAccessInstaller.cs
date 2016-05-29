@@ -10,8 +10,6 @@
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.AddFacility<TypedFactoryFacility>();
-
             container.Register(Component.For<IUnitOfWorkFactory>().AsFactory().LifestyleSingleton(),
                 Component.For<IUnitOfWork>().ImplementedBy<UnitOfWork>().LifestyleTransient());
         }

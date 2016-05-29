@@ -1,13 +1,11 @@
 ﻿namespace InformationalVaults.Controllers
 {
-    using System.Linq;
     using System.Web.Mvc;
     using System.Web.Security;
-    using DataAccess;
     using Models;
     using Providers;
 
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         public ActionResult Login()
         {
