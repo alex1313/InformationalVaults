@@ -10,7 +10,9 @@
 {
     @Html.EditorForModel()
 
-    @Html.ValidationMessage("")
+    <div>
+        @Html.ValidationMessage("")
+    </div>
 
     <input class="btn btn-default" type="submit" value="Log in" />
 }

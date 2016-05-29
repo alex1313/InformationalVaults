@@ -134,7 +134,7 @@
                     if (users.Any())
                     {
                         var user = users.First();
-                        var memberUser = new MembershipUser("MyMembershipProvider", user.Email, null, null, null, null,
+                        var memberUser = new MembershipUser("InformationalVaultsMembershipProvider", user.Email, null, null, null, null,
                             false, false, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue,
                             DateTime.MinValue);
                         return memberUser;
