@@ -8,5 +8,18 @@
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Vault> Vaults { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+                .HasMany(v => v.Vaults)
+                .WithMany(u => u.Users)
+                .Map(uv =>
+                {
+                    uv.MapLeftKey("UserId");
+                    uv.MapRightKey("VaultId");
+                    uv.ToTable("UserVault");
+                });
+        }
     }
 }
