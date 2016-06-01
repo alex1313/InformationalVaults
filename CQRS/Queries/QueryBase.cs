@@ -1,6 +1,7 @@
-﻿namespace CQRS.Queries.Infrastructure
+﻿namespace CQRS.Queries
 {
     using DataAccess.UnitOfWork;
+    using Infrastructure;
 
     public abstract class QueryBase<TCriterion, TResult> : IQuery<TCriterion, TResult>
         where TCriterion : class, ICriterion

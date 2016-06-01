@@ -147,6 +147,7 @@
     <Compile Include="Installers\DataAccessInstaller.cs" />
     <Compile Include="Installers\ControllersInstaller.cs" />
     <Compile Include="Installers\IocContainer.cs" />
+    <Compile Include="Installers\ServicesInstaller.cs" />
     <Compile Include="Installers\WindsorControllerFactory.cs" />
     <Compile Include="Models\LogOnViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
@@ -225,6 +226,10 @@
     <ProjectReference Include="..\DomainModel\DomainModel.csproj">
       <Project>{CC94283D-7452-4663-821E-B538CFA7276D}</Project>
       <Name>DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{92c31c07-f84f-415c-8a9e-9eeccee555db}</Project>
+      <Name>Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
