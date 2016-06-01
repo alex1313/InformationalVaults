@@ -8,5 +8,11 @@
         {
             return user.Vaults.Contains(vault);
         }
+
+        public bool IsUserAdmin(User user, Vault vault)
+        {
+            //TODO: implement vault admin checkeing
+            return true;
+        }
     }
 }

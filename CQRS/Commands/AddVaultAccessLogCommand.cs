@@ -2,8 +2,6 @@
 {
     using Contexts;
     using DomainModel.Entities;
-    using Infrastructure;
-    using Queries.Criteria;
     using Services;
 
     public class AddVaultAccessLogCommand : CommandBase<AddVaultAccessLogContext>

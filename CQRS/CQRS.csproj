@@ -51,9 +51,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\Criteria\IdCriterion.cs" />
     <Compile Include="Queries\Criteria\EmptyCriterion.cs" />
+    <Compile Include="Queries\Criteria\GetVaultViewModelsCriterion.cs" />
     <Compile Include="Queries\Criteria\NameCriterion.cs" />
     <Compile Include="Queries\GetVaultAccessLogsViewModelQuery.cs" />
-    <Compile Include="Queries\GetAllVaultsQuery.cs" />
+    <Compile Include="Queries\GetVaultViewModelsQuery.cs" />
     <Compile Include="Queries\GetUserByName.cs" />
     <Compile Include="Queries\GetVaultByIdQuery.cs" />
     <Compile Include="Queries\Infrastructure\QueryDescriptor.cs" />

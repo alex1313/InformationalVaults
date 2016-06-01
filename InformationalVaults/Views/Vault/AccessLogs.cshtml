@@ -12,7 +12,6 @@
             <th>User name</th>
         </tr>
     </thead>
-    <tbody>
         @foreach (var accessLog in Model)
         {
             var rowClass = @accessLog.IsAccessDenied ? "denied-access-log" : string.Empty;

@@ -4,7 +4,7 @@
     using Criteria;
     using DomainModel.ViewModels;
 
-    public class GetVaultAccessLogsQuery : QueryBase<IdCriterion, VaultAccessLogsViewModel[]>
+    public class GetVaultAccessLogViewModelsQuery : QueryBase<IdCriterion, VaultAccessLogsViewModel[]>
     {
         public override VaultAccessLogsViewModel[] Execute(IdCriterion criterion)
         {
