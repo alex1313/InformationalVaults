@@ -1,14 +1,15 @@
 ﻿namespace CQRS.Queries.Criteria
 {
+    using DomainModel.Entities;
     using Infrastructure;
 
     public class GetVaultViewModelsCriterion : ICriterion
     {
-        public GetVaultViewModelsCriterion(int currentUserId)
+        public GetVaultViewModelsCriterion(User currentUser)
         {
-            CurrentUserId = currentUserId;
+            CurrentUser = currentUser;
         }
 
-        public int CurrentUserId { get; set; }
+        public User CurrentUser { get; set; }
     }
 }

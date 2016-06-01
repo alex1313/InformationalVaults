@@ -15,7 +15,7 @@
                 .Execute(new NameCriterion(User.Identity.Name));
 
             var vaults = QueryBuilder.ResultingIn<VaultViewModel[]>()
-                .Execute(new GetVaultViewModelsCriterion(currentUser.Id));
+                .Execute(new GetVaultViewModelsCriterion(currentUser));
 
             return View(vaults);
         }

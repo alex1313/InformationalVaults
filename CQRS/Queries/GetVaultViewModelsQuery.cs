@@ -18,9 +18,6 @@
         {
             using (var uow = UnitOfWorkFactory.Create())
             {
-                var currentUser = uow.UserRepository
-                    .GetById(criterion.CurrentUserId);
-
                 return uow.VaultRepository
                     .GetAll()
                     .Select(x => new VaultViewModel
@@ -28,7 +25,7 @@
                         Id = x.Id.ToString(),
                         Name = x.Name,
                         Description = x.Description,
-                        ShowLinkToAccessLogs = x.VaultAccessLogs.Any() && _vaultAccessService.IsUserAdmin(currentUser, x)
+                        ShowLinkToAccessLogs = x.VaultAccessLogs.Any() && _vaultAccessService.IsUserAdmin(criterion.CurrentUser, x)
                     })
                     .ToArray();
             }
