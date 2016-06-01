@@ -3,7 +3,6 @@
     using System.Linq;
     using Criteria;
     using DomainModel.Entities;
-    using Infrastructure;
 
     public class GetAllVaultsQuery : QueryBase<EmptyCriterion, Vault[]>
     {

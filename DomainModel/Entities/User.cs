@@ -17,6 +17,7 @@
             Password = Crypto.HashPassword(password);
             RoleId = role.Id;
             Vaults = new List<Vault>();
+            VaultAccessLogs = new List<VaultAccessLog>();
         }
 
         public string Email { get; set; }
@@ -27,6 +28,8 @@
         public virtual Role Role { get; set; }
 
         public virtual List<Vault> Vaults { get; set; }
+
+        public List<VaultAccessLog> VaultAccessLogs { get; set; }
 
         public int Id { get; set; }
     }

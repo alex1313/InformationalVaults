@@ -2,7 +2,6 @@
 {
     using Criteria;
     using DomainModel.Entities;
-    using Infrastructure;
 
     public class GetVaultByIdQuery : QueryBase<IdCriterion, Vault>
     {

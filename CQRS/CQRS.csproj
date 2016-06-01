@@ -52,6 +52,7 @@
     <Compile Include="Queries\Criteria\IdCriterion.cs" />
     <Compile Include="Queries\Criteria\EmptyCriterion.cs" />
     <Compile Include="Queries\Criteria\NameCriterion.cs" />
+    <Compile Include="Queries\GetVaultAccessLogsViewModelQuery.cs" />
     <Compile Include="Queries\GetAllVaultsQuery.cs" />
     <Compile Include="Queries\GetUserByName.cs" />
     <Compile Include="Queries\GetVaultByIdQuery.cs" />

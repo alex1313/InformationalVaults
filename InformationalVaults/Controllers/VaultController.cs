@@ -1,23 +1,18 @@
 ﻿namespace InformationalVaults.Controllers
 {
+    using System.Linq;
     using System.Web.Mvc;
     using CQRS.Commands;
     using CQRS.Commands.Contexts;
     using CQRS.Queries.Criteria;
     using DataAccess.UnitOfWork;
     using DomainModel.Entities;
+    using DomainModel.ViewModels;
     using Models;
 
     [Authorize]
     public class VaultController : BaseController
     {
-        private readonly IUnitOfWorkFactory _unitOfWorkFactory;
-
-        public VaultController(IUnitOfWorkFactory unitOfWorkFactory)
-        {
-            _unitOfWorkFactory = unitOfWorkFactory;
-        }
-
         public ActionResult Index()
         {
             var vaults = QueryBuilder.ResultingIn<Vault[]>()
@@ -40,6 +35,15 @@
             CommandBuilder.Execute(new AddVaultAccessLogContext(currentUser.Id, id));
 
             return View(vault);
+        }
+
+        public ActionResult AccessLogs(int id)
+        {
+            var vaultAccessLogs = QueryBuilder
+                .ResultingIn<VaultAccessLogsViewModel[]>()
+                .Execute(new IdCriterion(id));
+            
+            return View(vaultAccessLogs);
         }
     }
 }

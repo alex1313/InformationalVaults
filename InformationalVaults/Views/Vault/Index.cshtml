@@ -19,6 +19,7 @@
             <td>@vault.Id</td>
             <td>@Html.ActionLink(vault.Name, "Details", new { id = vault.Id.ToString() })</td>
             <td>@vault.Description</td>
+            <td>@Html.ActionLink("Access logs", "AccessLogs", new { id = vault.Id.ToString() })</td>
         </tr>
     }
     </tbody>
