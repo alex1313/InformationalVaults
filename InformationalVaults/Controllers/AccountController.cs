@@ -1,6 +1,5 @@
 ﻿namespace InformationalVaults.Controllers
 {
-    using System.Web.Helpers;
     using System.Web.Mvc;
     using System.Web.Security;
     using Models;

@@ -19,9 +19,16 @@
             <td>@vault.Id</td>
             <td>@Html.ActionLink(vault.Name, "Details", new { vaultId = vault.Id })</td>
             <td>@vault.Description</td>
-            @if (vault.ShowLinkToAccessLogs)
+            @if (vault.IsCurrentUserAdmin)
             {
-                <td>@Html.ActionLink("Access logs", "AccessLogs", new { vaultId = vault.Id })</td>
+                <td>
+                    <span>@Html.ActionLink("Configure", "Configure", new {vaultId = vault.Id})</span>
+                    @if (vault.HasAccessLogs)
+                    {
+                        <span> / </span>
+                        <span>@Html.ActionLink("Access logs", "AccessLogs", new { vaultId = vault.Id })</span>
+                    }
+                </td>
             }
         </tr>
     }

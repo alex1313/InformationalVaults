@@ -203,6 +203,7 @@
     <Content Include="Views\Vault\Index.cshtml" />
     <Content Include="Views\Vault\Details.cshtml" />
     <Content Include="Views\Vault\AccessLogs.cshtml" />
+    <Content Include="Views\Vault\Configure.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

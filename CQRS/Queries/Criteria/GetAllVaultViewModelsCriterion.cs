@@ -3,9 +3,9 @@
     using DomainModel.Entities;
     using Infrastructure;
 
-    public class GetVaultViewModelsCriterion : ICriterion
+    public class GetAllVaultViewModelsCriterion : ICriterion
     {
-        public GetVaultViewModelsCriterion(User currentUser)
+        public GetAllVaultViewModelsCriterion(User currentUser)
         {
             CurrentUser = currentUser;
         }

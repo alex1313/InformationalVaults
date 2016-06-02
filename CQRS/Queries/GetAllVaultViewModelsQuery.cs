@@ -5,16 +5,16 @@
     using DomainModel.ViewModels;
     using Services;
 
-    public class GetVaultViewModelsQuery : QueryBase<GetVaultViewModelsCriterion, VaultViewModel[]>
+    public class GetAllVaultViewModelsQuery : QueryBase<GetAllVaultViewModelsCriterion, VaultViewModel[]>
     {
         private readonly IVaultAccessService _vaultAccessService;
 
-        public GetVaultViewModelsQuery(IVaultAccessService vaultAccessService)
+        public GetAllVaultViewModelsQuery(IVaultAccessService vaultAccessService)
         {
             _vaultAccessService = vaultAccessService;
         }
 
-        public override VaultViewModel[] Execute(GetVaultViewModelsCriterion criterion)
+        public override VaultViewModel[] Execute(GetAllVaultViewModelsCriterion criterion)
         {
             using (var uow = UnitOfWorkFactory.Create())
             {
@@ -25,7 +25,8 @@
                         Id = x.Id.ToString(),
                         Name = x.Name,
                         Description = x.Description,
-                        ShowLinkToAccessLogs = x.VaultAccessLogs.Any() && _vaultAccessService.IsUserAdmin(criterion.CurrentUser, x)
+                        IsCurrentUserAdmin = _vaultAccessService.IsUserAdmin(criterion.CurrentUser, x),
+                        HasAccessLogs = x.VaultAccessLogs.Any()
                     })
                     .ToArray();
             }

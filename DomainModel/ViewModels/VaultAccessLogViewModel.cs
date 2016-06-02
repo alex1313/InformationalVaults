@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class VaultAccessLogsViewModel
+    public class VaultAccessLogViewModel
     {
         public DateTime DateTimeStamp { get; set; }
         public string UserName { get; set; }

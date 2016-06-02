@@ -23,14 +23,14 @@
                 .Execute(new NameCriterion(User.Identity.Name));
 
             var vaults = QueryBuilder.ResultingIn<VaultViewModel[]>()
-                .Execute(new GetVaultViewModelsCriterion(currentUser));
+                .Execute(new GetAllVaultViewModelsCriterion(currentUser));
 
             return View(vaults);
         }
 
         public ActionResult Details(int vaultId)
         {
-            var vault = QueryBuilder.ResultingIn<Vault>()
+            var vault = QueryBuilder.ResultingIn<VaultViewModel>()
                 .Execute(new IdCriterion(vaultId));
 
             if (vault == null)
@@ -48,10 +48,21 @@
             return View(vault);
         }
 
+        public ActionResult Configure(int vaultId)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Configure(VaultConfigurationViewModel viewModel)
+        {
+            return View("Index");
+        }
+
         public ActionResult AccessLogs(int vaultId)
         {
             var vaultAccessLogs = QueryBuilder
-                .ResultingIn<VaultAccessLogsViewModel[]>()
+                .ResultingIn<VaultAccessLogViewModel[]>()
                 .Execute(new IdCriterion(vaultId));
 
             return View(vaultAccessLogs);

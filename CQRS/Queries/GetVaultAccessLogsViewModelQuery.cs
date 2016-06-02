@@ -4,16 +4,16 @@
     using Criteria;
     using DomainModel.ViewModels;
 
-    public class GetVaultAccessLogViewModelsQuery : QueryBase<IdCriterion, VaultAccessLogsViewModel[]>
+    public class GetVaultAccessLogViewModelsQuery : QueryBase<IdCriterion, VaultAccessLogViewModel[]>
     {
-        public override VaultAccessLogsViewModel[] Execute(IdCriterion criterion)
+        public override VaultAccessLogViewModel[] Execute(IdCriterion criterion)
         {
             using (var uow = UnitOfWorkFactory.Create())
             {
                 //TODO: mapping
                 return uow.VaultAccessLogRepository
                     .Get(x => x.VaultId == criterion.Id)
-                    .Select(x => new VaultAccessLogsViewModel
+                    .Select(x => new VaultAccessLogViewModel
                     {
                         DateTimeStamp = x.DateTimeStamp,
                         UserName = x.User.Email,

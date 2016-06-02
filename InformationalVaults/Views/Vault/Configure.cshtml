@@ -1,0 +1,18 @@
+﻿@model DomainModel.ViewModels.VaultConfigurationViewModel
+
+@{
+    ViewBag.Title = "Vault configuration";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Configure", "Vault"))
+{
+    @Html.EditorForModel()
+
+    <div>
+        @Html.ValidationMessage("")
+    </div>
+
+    <input class="btn btn-default" type="submit" value="Save configuration" />
+}

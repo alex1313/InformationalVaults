@@ -71,8 +71,9 @@
     <Compile Include="Entities\VaultAccessLog.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\VaultAccessLogsViewModel.cs" />
-    <Compile Include="ViewModels\VaultsListViewModel.cs" />
+    <Compile Include="ViewModels\VaultAccessLogViewModel.cs" />
+    <Compile Include="ViewModels\VaultConfigurationViewModel.cs" />
+    <Compile Include="ViewModels\VaultViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
