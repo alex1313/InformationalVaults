@@ -26,7 +26,7 @@
                         return Redirect(returnUrl);
                     }
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Vault");
                 }
 
                 ModelState.AddModelError("", "Invalid email or password");
@@ -57,7 +57,7 @@
                 if (membershipUser != null)
                 {
                     FormsAuthentication.SetAuthCookie(model.Email, false);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Vault");
                 }
 
                 ModelState.AddModelError("", "Registration error");
