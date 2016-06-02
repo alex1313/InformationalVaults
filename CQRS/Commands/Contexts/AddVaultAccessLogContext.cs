@@ -1,5 +1,6 @@
 ﻿namespace CQRS.Commands.Contexts
 {
+    using DomainModel.Entities;
     using Infrastructure;
 
     public class AddVaultAccessLogContext : ICommandContext
@@ -12,5 +13,7 @@
 
         public int UserId { get; set; }
         public int VaultId { get; set; }
+
+        public VaultAccessLog CreatedVaultAccessLog { get; set; }
     }
 }

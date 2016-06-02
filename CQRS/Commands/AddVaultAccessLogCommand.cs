@@ -24,6 +24,8 @@
 
                 var vaultAccessLog = new VaultAccessLog(context.UserId, context.VaultId, !haveAccess);
 
+                context.CreatedVaultAccessLog = vaultAccessLog;
+
                 uow.VaultAccessLogRepository.Insert(vaultAccessLog);
                 uow.Commit();
             }

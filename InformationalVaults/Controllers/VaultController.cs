@@ -5,10 +5,18 @@
     using CQRS.Queries.Criteria;
     using DomainModel.Entities;
     using DomainModel.ViewModels;
+    using Services;
 
     [Authorize]
     public class VaultController : BaseController
     {
+        private readonly ISendAlertService _sendAlertService;
+
+        public VaultController(ISendAlertService sendAlertService)
+        {
+            _sendAlertService = sendAlertService;
+        }
+
         public ActionResult Index()
         {
             var currentUser = QueryBuilder.ResultingIn<User>()
@@ -31,7 +39,11 @@
             var currentUser = QueryBuilder.ResultingIn<User>()
                 .Execute(new NameCriterion(User.Identity.Name));
 
-            CommandBuilder.Execute(new AddVaultAccessLogContext(currentUser.Id, vaultId));
+            var addVaultAccessLogContext = new AddVaultAccessLogContext(currentUser.Id, vaultId);
+            CommandBuilder.Execute(addVaultAccessLogContext);
+
+            if (addVaultAccessLogContext.CreatedVaultAccessLog.IsAccessDenied)
+                _sendAlertService.CreateAndSendAccessDeniedAlert(addVaultAccessLogContext.CreatedVaultAccessLog, currentUser.Email);
 
             return View(vault);
         }

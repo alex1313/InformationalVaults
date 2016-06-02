@@ -10,7 +10,9 @@
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Component.For<IVaultAccessService>().ImplementedBy<VaultAccessService>());
+            container.Register(Component.For<IVaultAccessService>().ImplementedBy<VaultAccessService>(),
+                Component.For<ISendAlertService>().ImplementedBy<SendAlertService>(),
+                Component.For<ISendEmailService>().ImplementedBy<GmailSendEmailService>());
         }
     }
 }
