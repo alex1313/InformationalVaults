@@ -99,7 +99,7 @@
                 using (var db = new InformationalVaultsContext())
                 {
                     var role = db.Roles.First(x => x.Name.ToLower() == "admin");
-                    var user = new User(email, password, role);
+                    var user = new User(email, password, role.Id);
 
                     db.Users.Add(user);
                     db.SaveChanges();

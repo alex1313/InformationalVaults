@@ -17,9 +17,12 @@
     {
         <tr>
             <td>@vault.Id</td>
-            <td>@Html.ActionLink(vault.Name, "Details", new { vaultId = vault.Id.ToString() })</td>
+            <td>@Html.ActionLink(vault.Name, "Details", new { vaultId = vault.Id })</td>
             <td>@vault.Description</td>
-            <td>@Html.ActionLink("Access logs", "AccessLogs", new { vaultId = vault.Id.ToString() })</td>
+            @if (vault.ShowLinkToAccessLogs)
+            {
+                <td>@Html.ActionLink("Access logs", "AccessLogs", new { vaultId = vault.Id })</td>
+            }
         </tr>
     }
     </tbody>

@@ -58,6 +58,10 @@
     <Compile Include="Migrations\201606011518002_AddVaultAccessLogs.Designer.cs">
       <DependentUpon>201606011518002_AddVaultAccessLogs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606012123261_AddVaultAdminRelationship.cs" />
+    <Compile Include="Migrations\201606012123261_AddVaultAdminRelationship.Designer.cs">
+      <DependentUpon>201606012123261_AddVaultAdminRelationship.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\MigrationsConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
@@ -81,6 +85,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606011518002_AddVaultAccessLogs.resx">
       <DependentUpon>201606011518002_AddVaultAccessLogs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606012123261_AddVaultAdminRelationship.resx">
+      <DependentUpon>201606012123261_AddVaultAdminRelationship.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

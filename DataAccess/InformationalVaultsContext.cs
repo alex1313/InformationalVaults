@@ -21,6 +21,12 @@
                     uv.MapRightKey("VaultId");
                     uv.ToTable("UserVault");
                 });
+
+            modelBuilder.Entity<Vault>()
+                .HasOptional(v => v.Admin)
+                .WithMany(u => u.AdministeredVaults)
+                .HasForeignKey(v => v.AdminId)
+                .WillCascadeOnDelete(false);
         }
     }
 }

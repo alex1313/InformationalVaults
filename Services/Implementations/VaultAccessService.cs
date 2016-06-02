@@ -6,13 +6,12 @@
     {
         public bool IsUserHasAccess(User user, Vault vault)
         {
-            return user.Vaults.Contains(vault);
+            return user.Vaults.Contains(vault) || IsUserAdmin(user, vault);
         }
 
         public bool IsUserAdmin(User user, Vault vault)
         {
-            //TODO: implement vault admin checkeing
-            return true;
+            return user.Id == vault.AdminId;
         }
     }
 }

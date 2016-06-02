@@ -25,6 +25,31 @@ namespace DataAccess.Migrations
 
             context.SaveChanges();
 
+            var ardminRoleId = context.Roles.First(x => x.Name == adminRoleName).Id;
+            var userRoleId = context.Roles.First(x => x.Name == userRoleName).Id;
+
+            const string userName1 = "user@example.com";
+            const string userName2 = "good.man@example.com";
+            const string userName3 = "hodor@hodor.hodor";
+            const string userName4 = "not.good.man@mail.ru";
+            const string userName5 = "admin@example.com";
+
+            var users = new[]
+            {
+                new User(userName1, "user", ardminRoleId),
+                new User(userName2, "qwerty", userRoleId),
+                new User(userName3, "hodor", userRoleId),
+                new User(userName4, "123", ardminRoleId),
+                new User(userName5, "admin", userRoleId)
+            };
+
+            context.Users.AddOrUpdate(
+                user => user.Email,
+                users
+            );
+
+            context.SaveChanges();
+
             var vaults = new[]
             {
                 new Vault("First vault", "First information vault with some data"),
@@ -32,41 +57,21 @@ namespace DataAccess.Migrations
                 new Vault("Third vault", "Third information vault with some data")
             };
 
+            vaults[0].AdminId = users[0].Id;
+            vaults[1].AdminId = users[1].Id;
+            vaults[2].AdminId = users[2].Id;
+
+            vaults[0].Users.Add(users[1]);
+            vaults[0].Users.Add(users[2]);
+            vaults[0].Users.Add(users[3]);
+            vaults[1].Users.Add(users[0]);
+            vaults[1].Users.Add(users[3]);
+            vaults[2].Users.Add(users[3]);
+
             context.Vaults.AddOrUpdate(
                 vault => vault.Name,
                 vaults
                 );
-
-            context.SaveChanges();
-
-            var ardminRole = context.Roles.First(x => x.Name == adminRoleName);
-            var userRole = context.Roles.First(x => x.Name == userRoleName);
-
-            const string userName1 = "admin@example.com";
-            const string userName2 = "user@example.com";
-            const string userName3 = "good.man@example.com";
-            const string userName4 = "hodor@hodor.hodor";
-            const string userName5 = "not.good.man@mail.ru";
-
-            var users = new[]
-            {
-                new User(userName1, "admin", ardminRole),
-                new User(userName2, "user", userRole),
-                new User(userName3, "qwerty", userRole),
-                new User(userName4, "hodor", ardminRole),
-                new User(userName5, "123", userRole)
-            };
-
-            users[1].Vaults.Add(vaults[0]);
-            users[1].Vaults.Add(vaults[1]);
-            users[2].Vaults.Add(vaults[2]);
-            users[4].Vaults.Add(vaults[0]);
-            users[4].Vaults.Add(vaults[2]);
-
-            context.Users.AddOrUpdate(
-                user => user.Email,
-                users
-            );
         }
     }
 }

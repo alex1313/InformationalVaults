@@ -21,6 +21,9 @@
         public string Name { get; set; }
         public string Description { get; set; }
 
+        public int? AdminId { get; set; }
+        public virtual User Admin { get; set; }
+
         public virtual List<User> Users { get; set; }
 
         public virtual List<VaultAccessLog> VaultAccessLogs { get; set; }
