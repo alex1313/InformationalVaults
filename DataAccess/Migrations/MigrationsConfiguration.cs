@@ -1,5 +1,6 @@
 namespace DataAccess.Migrations
 {
+    using System;
     using System.Data.Entity.Migrations;
     using System.Linq;
     using DomainModel.Entities;
@@ -46,15 +47,15 @@ namespace DataAccess.Migrations
             context.Users.AddOrUpdate(
                 user => user.Email,
                 users
-            );
+                );
 
             context.SaveChanges();
 
             var vaults = new[]
             {
-                new Vault("First vault", "First information vault with some data"),
+                new Vault("First vault", "First information vault with some data", TimeSpan.Parse("9:47"), TimeSpan.Parse("21:30")),
                 new Vault("Second vault", "Second information vault with some data"),
-                new Vault("Third vault", "Third information vault with some data")
+                new Vault("Third vault", "Third information vault with some data", closeTime: TimeSpan.Parse("18:00"))
             };
 
             vaults[0].AdminId = users[0].Id;

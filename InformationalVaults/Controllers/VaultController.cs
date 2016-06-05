@@ -22,19 +22,19 @@
             var currentUser = QueryBuilder.ResultingIn<User>()
                 .Execute(new NameCriterion(User.Identity.Name));
 
-            var vaults = QueryBuilder.ResultingIn<VaultViewModel[]>()
+            var vaultViewModels = QueryBuilder.ResultingIn<VaultViewModel[]>()
                 .Execute(new GetAllVaultViewModelsCriterion(currentUser));
 
-            return View(vaults);
+            return View(vaultViewModels);
         }
 
         public ActionResult Details(int vaultId)
         {
-            var vault = QueryBuilder.ResultingIn<VaultViewModel>()
+            var vaultViewModel = QueryBuilder.ResultingIn<VaultViewModel>()
                 .Execute(new IdCriterion(vaultId));
 
-            if (vault == null)
-                View("Index");
+            if (vaultViewModel == null)
+                return RedirectToAction("Index");
 
             var currentUser = QueryBuilder.ResultingIn<User>()
                 .Execute(new NameCriterion(User.Identity.Name));
@@ -45,27 +45,38 @@
             if (addVaultAccessLogContext.CreatedVaultAccessLog.IsAccessDenied)
                 _sendAlertService.CreateAndSendAccessDeniedAlert(addVaultAccessLogContext.CreatedVaultAccessLog, currentUser.Email);
 
-            return View(vault);
+            return View(vaultViewModel);
         }
 
         public ActionResult Configure(int vaultId)
         {
-            return View();
+            var vaultConfigurationViewModel = QueryBuilder
+                .ResultingIn<VaultConfigurationViewModel>()
+                .Execute(new IdCriterion(vaultId));
+
+            return View(vaultConfigurationViewModel);
         }
 
         [HttpPost]
         public ActionResult Configure(VaultConfigurationViewModel viewModel)
         {
-            return View("Index");
+            if (ModelState.IsValid)
+            {
+                CommandBuilder.Execute(new UpdateVaultConfigurationContext(viewModel));
+
+                return RedirectToAction("Index");
+            }
+
+            return View(viewModel);
         }
 
         public ActionResult AccessLogs(int vaultId)
         {
-            var vaultAccessLogs = QueryBuilder
+            var vaultAccessLogViewModels = QueryBuilder
                 .ResultingIn<VaultAccessLogViewModel[]>()
                 .Execute(new IdCriterion(vaultId));
 
-            return View(vaultAccessLogs);
+            return View(vaultAccessLogViewModels);
         }
     }
 }

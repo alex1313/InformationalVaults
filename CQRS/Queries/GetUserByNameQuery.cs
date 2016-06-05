@@ -4,7 +4,7 @@
     using Criteria;
     using DomainModel.Entities;
 
-    public class GetUserByName : QueryBase<NameCriterion, User>
+    public class GetUserByNameQuery : QueryBase<NameCriterion, User>
     {
         public override User Execute(NameCriterion criterion)
         {
