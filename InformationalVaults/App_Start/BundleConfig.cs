@@ -12,6 +12,12 @@
             bundles.Add(new ScriptBundle("~/Scripts/jqueryval").Include(
                 "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/Scripts/moment").Include(
+                "~/Scripts/moment*"));
+
+            bundles.Add(new ScriptBundle("~/Scripts/bootstrap-material-datetimepicker").Include(
+                "~/Scripts/bootstrap-material-datetimepicker.js"));
+
             bundles.Add(new ScriptBundle("~/Scripts/modernizr").Include(
                 "~/Scripts/modernizr-*"));
 
@@ -21,6 +27,9 @@
 
             bundles.Add(new StyleBundle("~/Styles/bootstrap").Include(
                 "~/Content/bootstrap.css"));
+
+            bundles.Add(new StyleBundle("~/Styles/bootstrap-material-datetimepicker").Include(
+                "~/Content/bootstrap-material-datetimepicker.css"));
 
             bundles.Add(new StyleBundle("~/Styles/site").Include(
                 "~/Content/site.css"));

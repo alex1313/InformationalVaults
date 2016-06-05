@@ -17,7 +17,7 @@
 
                 return new VaultConfigurationViewModel
                 {
-                    Id = vault.Id.ToString(),
+                    Id = vault.Id,
                     Name = vault.Name,
                     Description = vault.Description,
                     OpenTime = vault.OpenTime,

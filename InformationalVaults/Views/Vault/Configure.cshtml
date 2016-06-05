@@ -4,6 +4,11 @@
     ViewBag.Title = "Vault configuration";
 }
 
+@section Styles
+{
+    @Styles.Render("~/Styles/bootstrap-material-datetimepicker")
+}
+
 <h2>@ViewBag.Title</h2>
 
 @using (Html.BeginForm("Configure", "Vault"))
@@ -15,4 +20,17 @@
     </div>
 
     <input class="btn btn-default" type="submit" value="Save configuration" />
+}
+
+@section Scripts
+{
+    @Scripts.Render("~/Scripts/moment")
+    @Scripts.Render("~/Scripts/bootstrap-material-datetimepicker")
+
+    <script>
+        $('#OpenTime, #CloseTime').bootstrapMaterialDatePicker({
+            format : 'HH:mm',
+            date: false
+        });
+    </script>
 }
