@@ -1,6 +1,7 @@
 ﻿namespace CQRS.Queries
 {
     using Criteria;
+    using DomainModel.Definitions;
 
     public class IsUserSuperAdminQuery : QueryBase<IdCriterion, bool>
     {
@@ -10,7 +11,7 @@
             {
                 var user = uow.UserRepository.GetById(criterion.Id);
 
-                return user.Role.Name.ToLower() == "admin";
+                return user.Role.Name == RoleNames.Administrator;
             }
         }
     }

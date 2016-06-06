@@ -1,6 +1,7 @@
 namespace DataAccess.Migrations
 {
     using System.Data.Entity.Migrations;
+    using DomainModel.Definitions;
 
     public partial class InitialCreate : DbMigration
     {
@@ -50,8 +51,6 @@ namespace DataAccess.Migrations
                 .ForeignKey("dbo.Vaults", t => t.VaultId, true)
                 .Index(t => t.UserId)
                 .Index(t => t.VaultId);
-
-            Sql("INSERT INTO dbo.Roles VALUES ('Admin'), ('User')");
         }
 
         public override void Down()

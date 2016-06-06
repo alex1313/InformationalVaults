@@ -3,9 +3,10 @@
     using System.Web.Mvc;
     using CQRS.Commands.Contexts;
     using CQRS.Queries.Criteria;
+    using DomainModel.Definitions;
     using DomainModel.ViewModels;
 
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = RoleNames.Administrator)]
     public class RoleController : BaseController
     {
         public ActionResult Manage()

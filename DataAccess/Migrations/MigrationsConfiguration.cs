@@ -3,6 +3,7 @@ namespace DataAccess.Migrations
     using System;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using DomainModel.Definitions;
     using DomainModel.Entities;
 
     public sealed class MigrationsConfiguration : DbMigrationsConfiguration<InformationalVaultsContext>
@@ -15,8 +16,8 @@ namespace DataAccess.Migrations
 
         protected override void Seed(InformationalVaultsContext context)
         {
-            const string adminRoleName = "Admin";
-            const string userRoleName = "User";
+            const string adminRoleName = RoleNames.Administrator;
+            const string userRoleName = RoleNames.User;
 
             context.Roles.AddOrUpdate(
                 role => role.Name,
@@ -37,11 +38,11 @@ namespace DataAccess.Migrations
 
             var users = new[]
             {
-                new User(userName1, "user", ardminRoleId),
+                new User(userName1, "user", userRoleId),
                 new User(userName2, "qwerty", userRoleId),
                 new User(userName3, "hodor", userRoleId),
-                new User(userName4, "123", ardminRoleId),
-                new User(userName5, "admin", userRoleId)
+                new User(userName4, "123", userRoleId),
+                new User(userName5, "admin", ardminRoleId)
             };
 
             context.Users.AddOrUpdate(

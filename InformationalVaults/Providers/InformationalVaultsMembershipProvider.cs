@@ -98,7 +98,7 @@
             {
                 using (var db = new InformationalVaultsContext())
                 {
-                    var role = db.Roles.First(x => x.Name.ToLower() == "admin");
+                    var role = db.Roles.First(x => x.Name.ToLower() == "user");
                     var user = new User(email, password, role.Id);
 
                     db.Users.Add(user);
