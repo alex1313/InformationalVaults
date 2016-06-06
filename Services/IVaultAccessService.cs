@@ -6,6 +6,6 @@
     {
         bool IsUserHasAccess(User user, Vault vault);
 
-        bool IsUserAdmin(User user, Vault vault);
+        bool IsUserVaultAdmin(User user, Vault vault);
     }
 }

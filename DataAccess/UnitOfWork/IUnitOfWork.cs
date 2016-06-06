@@ -9,6 +9,7 @@
         RepositoryBase<User> UserRepository { get; }
         RepositoryBase<Vault> VaultRepository { get; }
         RepositoryBase<VaultAccessLog> VaultAccessLogRepository { get; }
+        RepositoryBase<Role> RoleRepository { get; }
 
         void Commit();
     }

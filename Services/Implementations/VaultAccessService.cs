@@ -7,11 +7,11 @@
     {
         public bool IsUserHasAccess(User user, Vault vault)
         {
-            return (user.Vaults.Contains(vault) || IsUserAdmin(user, vault))
+            return (user.Vaults.Contains(vault) || IsUserVaultAdmin(user, vault))
                    && IsOpenNow(vault.OpenTime, vault.CloseTime);
         }
 
-        public bool IsUserAdmin(User user, Vault vault)
+        public bool IsUserVaultAdmin(User user, Vault vault)
         {
             return user.Id == vault.AdminId;
         }

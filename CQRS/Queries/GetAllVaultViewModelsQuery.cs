@@ -25,7 +25,7 @@
                         Id = x.Id.ToString(),
                         Name = x.Name,
                         Description = x.Description,
-                        IsCurrentUserAdmin = _vaultAccessService.IsUserAdmin(criterion.CurrentUser, x),
+                        IsCurrentUserAdmin = _vaultAccessService.IsUserVaultAdmin(criterion.CurrentUser, x),
                         HasAccessLogs = x.VaultAccessLogs.Any()
                     })
                     .ToArray();

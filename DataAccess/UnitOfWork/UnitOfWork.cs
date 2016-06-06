@@ -13,10 +13,12 @@
         private RepositoryBase<User> _userRepository;
         private RepositoryBase<Vault> _vaultRepository;
         private RepositoryBase<VaultAccessLog> _vaultAccessLogRepository;
+        private RepositoryBase<Role> _roleRepository;
 
         public RepositoryBase<User> UserRepository => _userRepository ?? (_userRepository = new RepositoryBase<User>(_context));
         public RepositoryBase<Vault> VaultRepository => _vaultRepository ?? (_vaultRepository = new RepositoryBase<Vault>(_context));
         public RepositoryBase<VaultAccessLog> VaultAccessLogRepository => _vaultAccessLogRepository ?? (_vaultAccessLogRepository = new RepositoryBase<VaultAccessLog>(_context));
+        public RepositoryBase<Role> RoleRepository => _roleRepository ?? (_roleRepository = new RepositoryBase<Role>(_context));
 
         protected virtual void Dispose(bool disposing)
         {
