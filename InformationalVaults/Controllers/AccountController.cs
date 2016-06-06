@@ -1,7 +1,10 @@
 ﻿namespace InformationalVaults.Controllers
 {
+    using System.Linq;
     using System.Web.Mvc;
     using System.Web.Security;
+    using CQRS.Queries.Criteria;
+    using DomainModel.Entities;
     using Models;
     using Providers;
 
@@ -62,6 +65,21 @@
                 ModelState.AddModelError("", "Registration error");
             }
             return View(model);
+        }
+
+        public JsonResult GetUserNames()
+        {
+            var users = QueryBuilder.ResultingIn<User[]>()
+                .Execute(new EmptyCriterion());
+
+            var result = users
+                .Select(x => new
+                {
+                    id = x.Id,
+                    text = x.Email
+                });
+
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
 }

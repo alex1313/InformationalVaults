@@ -2,35 +2,77 @@
 
 @{
     ViewBag.Title = "Vault configuration";
+    const string timeFormat = "{0:hh\\:mm}";
 }
 
 @section Styles
 {
     @Styles.Render("~/Styles/bootstrap-material-datetimepicker")
+    @Styles.Render("~/Styles/select2")
 }
 
 <h2>@ViewBag.Title</h2>
 
 @using (Html.BeginForm("Configure", "Vault"))
 {
-    @Html.EditorForModel()
+    <div class="form-group">
+        @Html.LabelFor(x => x.Name)
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Name)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Description)
+        @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Description)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.OpenTime)
+        @Html.TextBoxFor(x => x.OpenTime, timeFormat, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.OpenTime)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.CloseTime)
+        @Html.TextBoxFor(x => x.CloseTime, timeFormat, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CloseTime)
+    </div>
+
+    <div class="form-group">
+        <label for="VaultUsers">Users who have access</label>
+        <div><select class="form-control" name="Users" id="VaultUsers" data-url="@Url.Action("GetUserNames", "Account")"></select></div>
+    </div>
 
     <div>
         @Html.ValidationMessage("")
     </div>
 
-    <input class="btn btn-default" type="submit" value="Save configuration" />
+    <input class="btn btn-primary" type="submit" value="Save configuration" />
 }
 
 @section Scripts
 {
     @Scripts.Render("~/Scripts/moment")
     @Scripts.Render("~/Scripts/bootstrap-material-datetimepicker")
+    @Scripts.Render("~/Scripts/select2")
 
     <script>
         $('#OpenTime, #CloseTime').bootstrapMaterialDatePicker({
-            format : 'HH:mm',
+            format: 'HH:mm',
             date: false
         });
+
+        var userConrol = $('#VaultUsers');
+        $.getJSON(userConrol.data('url')).done(
+            function (data) {
+                userConrol.select2({
+                    placeholder: 'Type user email',
+                    allowClear: true,
+                    multiple: true,
+                    data: data
+                });
+            }
+        );
     </script>
 }

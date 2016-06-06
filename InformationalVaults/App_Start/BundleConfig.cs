@@ -21,6 +21,9 @@
             bundles.Add(new ScriptBundle("~/Scripts/modernizr").Include(
                 "~/Scripts/modernizr-*"));
 
+            bundles.Add(new ScriptBundle("~/Scripts/select2").Include(
+                "~/Scripts/select2*"));
+
             bundles.Add(new ScriptBundle("~/Scripts/bootstrap").Include(
                 "~/Scripts/bootstrap.js",
                 "~/Scripts/respond.js"));
@@ -30,6 +33,9 @@
 
             bundles.Add(new StyleBundle("~/Styles/bootstrap-material-datetimepicker").Include(
                 "~/Content/bootstrap-material-datetimepicker.css"));
+
+            bundles.Add(new StyleBundle("~/Styles/select2").Include(
+                "~/Content/css/select2*"));
 
             bundles.Add(new StyleBundle("~/Styles/site").Include(
                 "~/Content/site.css"));

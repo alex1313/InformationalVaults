@@ -55,6 +55,7 @@
     <Compile Include="Queries\Criteria\EmptyCriterion.cs" />
     <Compile Include="Queries\Criteria\GetAllVaultViewModelsCriterion.cs" />
     <Compile Include="Queries\Criteria\NameCriterion.cs" />
+    <Compile Include="Queries\GetAllUsersQuery.cs" />
     <Compile Include="Queries\GetVaultAccessLogsViewModelQuery.cs" />
     <Compile Include="Queries\GetAllVaultViewModelsQuery.cs" />
     <Compile Include="Queries\GetUserByNameQuery.cs" />
