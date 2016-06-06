@@ -11,14 +11,16 @@
         {
             using (var uow = UnitOfWorkFactory.Create())
             {
-                var users = uow.UserRepository.GetAll();
+                var users = uow.UserRepository.GetAll()
+                    .OrderBy(x => x.Email);
+
                 var roles = uow.RoleRepository.GetAll();
 
                 return users.Select(u => new UsersRolesViewModel
                 {
                     Id = u.Id,
                     Name = u.Email,
-                    Role = roles.Select(r => new SelectListItem
+                    Roles = roles.Select(r => new SelectListItem
                     {
                         Text = r.Name,
                         Value = r.Id.ToString(),

@@ -68,7 +68,7 @@
             return View(model);
         }
 
-        [Authorize(Roles = RoleNames.Administrator)]
+        [Authorize]
         public JsonResult GetUserNames()
         {
             var users = QueryBuilder.ResultingIn<User[]>()
