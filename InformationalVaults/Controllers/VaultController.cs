@@ -75,7 +75,7 @@
         {
             var vaultAccessLogViewModels = QueryBuilder
                 .ResultingIn<VaultAccessLogViewModel[]>()
-                .Execute(new IdCriterion(vaultId));
+                .Execute(new GetVaultAccessLogViewModelsForLastDayContext(vaultId));
 
             return View(vaultAccessLogViewModels);
         }

@@ -83,13 +83,14 @@
     <Compile Include="Commands\UpdateRolesOfUsersCommand.cs" />
     <Compile Include="Commands\UpdateVaultConfigurationCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\Criteria\GetVaultAccessLogViewModelsForLastDayContext.cs" />
     <Compile Include="Queries\Criteria\IdCriterion.cs" />
     <Compile Include="Queries\Criteria\EmptyCriterion.cs" />
     <Compile Include="Queries\Criteria\GetAllVaultViewModelsCriterion.cs" />
     <Compile Include="Queries\Criteria\NameCriterion.cs" />
     <Compile Include="Queries\GetAllUsersQuery.cs" />
     <Compile Include="Queries\GetUsersRolesViewModelQuery.cs" />
-    <Compile Include="Queries\GetVaultAccessLogsViewModelQuery.cs" />
+    <Compile Include="Queries\GetVaultAccessLogViewModelsForLastDayQuery.cs" />
     <Compile Include="Queries\GetAllVaultViewModelsQuery.cs" />
     <Compile Include="Queries\GetUserByNameQuery.cs" />
     <Compile Include="Queries\GetVaultAdminsViewModelQuery.cs" />
