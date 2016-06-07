@@ -3,6 +3,7 @@
     using System.Web.Mvc;
     using CQRS.Commands.Contexts;
     using CQRS.Queries.Criteria;
+    using DomainModel.Definitions;
     using DomainModel.Entities;
     using DomainModel.ViewModels;
     using Services;
@@ -77,6 +78,24 @@
                 .Execute(new IdCriterion(vaultId));
 
             return View(vaultAccessLogViewModels);
+        }
+
+        public ActionResult VaultAdmins()
+        {
+            var usersRolesViewModel = QueryBuilder
+                .ResultingIn<VaultAdminsViewModel[]>()
+                .Execute(new EmptyCriterion());
+
+            return View(usersRolesViewModel);
+        }
+
+        [HttpPost]
+        [Authorize(Roles=RoleNames.Administrator)]
+        public ActionResult VaultAdmins(VaultAdminsViewModel[] viewModel)
+        {
+            CommandBuilder.Execute(new UpdateAdminsOfVaultsContext(viewModel));
+
+            return RedirectToAction("Index", "Vault");
         }
     }
 }

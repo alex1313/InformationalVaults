@@ -19,7 +19,7 @@
             <td>@vault.Id</td>
             <td>@Html.ActionLink(vault.Name, "Details", new { vaultId = vault.Id })</td>
             <td>@vault.Description</td>
-            @if (vault.IsCurrentUserAdmin)
+            @if (vault.IsCurrentUserVaultAdmin)
             {
                 <td>
                     <span>@Html.ActionLink("Configure", "Configure", new {vaultId = vault.Id})</span>

@@ -2,11 +2,11 @@
 {
     using System.Web.Mvc;
 
-    public class UsersRolesViewModel
+    public class VaultAdminsViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int RoleId { get; set; }
-        public SelectListItem[] Roles { get; set; }
+        public int AdminId { get; set; }
+        public SelectListItem[] Users { get; set; }
     }
 }

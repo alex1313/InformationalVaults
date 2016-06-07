@@ -17,6 +17,13 @@
                 vault.OpenTime = configuration.OpenTime;
                 vault.CloseTime = configuration.CloseTime;
 
+                vault.Users.Clear();
+                foreach (var userId in configuration.Users)
+                {
+                    var user = uow.UserRepository.GetById(userId);
+                    vault.Users.Add(user);
+                }
+
                 uow.VaultRepository.Update(vault);
 
                 uow.Commit();

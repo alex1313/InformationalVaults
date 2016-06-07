@@ -78,6 +78,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\UsersRolesViewModel.cs" />
     <Compile Include="ViewModels\VaultAccessLogViewModel.cs" />
+    <Compile Include="ViewModels\VaultAdminsViewModel.cs" />
     <Compile Include="ViewModels\VaultConfigurationViewModel.cs" />
     <Compile Include="ViewModels\VaultViewModel.cs" />
   </ItemGroup>

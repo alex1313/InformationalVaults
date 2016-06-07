@@ -5,7 +5,7 @@
     using Criteria;
     using DomainModel.ViewModels;
 
-    public class GetUsersRolesViewModel : QueryBase<EmptyCriterion, UsersRolesViewModel[]>
+    public class GetUsersRolesViewModelQuery : QueryBase<EmptyCriterion, UsersRolesViewModel[]>
     {
         public override UsersRolesViewModel[] Execute(EmptyCriterion criterion)
         {

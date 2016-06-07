@@ -9,11 +9,14 @@
             @if (User.IsInRole(RoleNames.Administrator))
             {
                 <li>
+                    @Html.ActionLink("Manage vault admins", "VaultAdmins", "Vault")
+                </li>
+                <li>
                     @Html.ActionLink("Manage user roles", "Manage", "Role")
                 </li>
             }
             <li>
-                @Html.ActionLink("Hello " + User.Identity.Name + "!", "Index", "Vault", null, new {title = "Manage"})
+                @Html.ActionLink($"Hello {User.Identity.Name}!", "Index", "Vault", null, new {title = "Manage"})
             </li>
             <li>
                 @Html.ActionLink("Log off", "LogOff", "Account")
