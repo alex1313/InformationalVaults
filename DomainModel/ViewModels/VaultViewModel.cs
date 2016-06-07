@@ -9,7 +9,7 @@
         public string Description { get; set; }
 
         [Display(Name="Admin name")]
-        public string AdminName { get; set; }
+        public string AdminEmail { get; set; }
 
         public bool IsCurrentUserVaultAdmin { get; set; }
         public bool HasAccessLogs { get; set; }

@@ -44,7 +44,7 @@
             CommandBuilder.Execute(addVaultAccessLogContext);
 
             if (addVaultAccessLogContext.CreatedVaultAccessLog.IsAccessDenied)
-                _sendAlertService.CreateAndSendAccessDeniedAlert(addVaultAccessLogContext.CreatedVaultAccessLog, currentUser.Email);
+                _sendAlertService.CreateAndSendAccessDeniedAlert(addVaultAccessLogContext.CreatedVaultAccessLog, vaultViewModel.AdminEmail);
 
             return View(vaultViewModel);
         }

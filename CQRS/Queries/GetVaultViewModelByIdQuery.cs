@@ -17,7 +17,7 @@
                     Id = vault.Id.ToString(),
                     Name = vault.Name,
                     Description = vault.Description,
-                    AdminName = vault.Admin.Email
+                    AdminEmail = vault.Admin.Email
                 };
             }
         }
