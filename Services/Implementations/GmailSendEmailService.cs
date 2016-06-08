@@ -21,7 +21,7 @@ namespace Services.Implementations
                 Credentials = new NetworkCredential(recipientMailAddress.Address, senderPassword)
             };
 
-            using (var mail = new MailMessage(senderMailAddress, senderMailAddress)
+            using (var mail = new MailMessage(senderMailAddress, recipientMailAddress)
             {
                 Subject = subject,
                 Body = body

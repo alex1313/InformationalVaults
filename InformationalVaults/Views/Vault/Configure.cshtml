@@ -17,32 +17,32 @@
 {
     <div class="form-group">
         @Html.LabelFor(x => x.Name)
-        @Html.TextBoxFor(x => x.Name, new {@class = "form-control"})
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.Name)
     </div>
 
     <div class="form-group">
         @Html.LabelFor(x => x.Description)
-        @Html.TextBoxFor(x => x.Description, new {@class = "form-control"})
+        @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.Description)
     </div>
 
     <div class="form-group">
         @Html.LabelFor(x => x.OpenTime)
-        @Html.TextBoxFor(x => x.OpenTime, timeFormat, new {@class = "form-control"})
+        @Html.TextBoxFor(x => x.OpenTime, timeFormat, new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.OpenTime)
     </div>
 
     <div class="form-group">
         @Html.LabelFor(x => x.CloseTime)
-        @Html.TextBoxFor(x => x.CloseTime, timeFormat, new {@class = "form-control"})
+        @Html.TextBoxFor(x => x.CloseTime, timeFormat, new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.CloseTime)
     </div>
 
     <div class="form-group">
         <label for="VaultUsers">Users who have access</label>
         <div>
-            @Html.ListBoxFor(x => x.SelectedUsers, new SelectList(Model.Users, "Id", "Email"), new {multiple = "multiple", @id = "VaultUsers"})
+            @Html.ListBoxFor(x => x.SelectedUsers, new SelectList(Model.Users, "Id", "Email"), new { multiple = "multiple", @id = "VaultUsers" })
         </div>
     </div>
 
@@ -50,7 +50,7 @@
         @Html.ValidationMessage("")
     </div>
 
-    <input class="btn btn-primary" type="submit" value="Save configuration"/>
+    <input class="btn btn-primary" type="submit" value="Save configuration" />
 }
 
 @section Scripts

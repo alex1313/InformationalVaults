@@ -38,20 +38,20 @@
             _vaultUser = new User(It.IsAny<string>(), SomeString, 1)
             {
                 Role = new Role(RoleNames.User),
-                Vaults = new List<Vault> {_vault}
+                Vaults = new List<Vault> { _vault }
             };
         }
 
         [Test]
-        public void AccessShouldBeDeniedBecauseOutOfOpenHours()
+        public void UserShouldHaveAccess()
         {
             var dateTimeMock = new Mock<IDateTimeProvider>();
-            dateTimeMock.SetupGet(tp => tp.PresentTime).Returns(_outOfOpenHours);
+            dateTimeMock.SetupGet(tp => tp.PresentTime).Returns(_inOpenHours);
             _service = new VaultAccessService(dateTimeMock.Object);
 
             var hasAccess = _service.IsUserHasAccess(_vaultUser, _vault);
 
-            Assert.IsFalse(hasAccess);
+            Assert.IsTrue(hasAccess);
         }
 
         [Test]
@@ -67,15 +67,15 @@
         }
 
         [Test]
-        public void UserShouldHaveAccess()
+        public void AccessShouldBeDeniedBecauseOutOfOpenHours()
         {
             var dateTimeMock = new Mock<IDateTimeProvider>();
-            dateTimeMock.SetupGet(tp => tp.PresentTime).Returns(_inOpenHours);
+            dateTimeMock.SetupGet(tp => tp.PresentTime).Returns(_outOfOpenHours);
             _service = new VaultAccessService(dateTimeMock.Object);
 
             var hasAccess = _service.IsUserHasAccess(_vaultUser, _vault);
 
-            Assert.IsTrue(hasAccess);
+            Assert.IsFalse(hasAccess);
         }
     }
 }

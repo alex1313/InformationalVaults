@@ -17,7 +17,7 @@
     {
         <tr>
             <td>@vault.Id</td>
-            <td>@Html.ActionLink(vault.Name, "Details", new {id = vault.Id})</td>
+            <td>@Html.ActionLink(vault.Name, "Details", new { id = vault.Id })</td>
             <td>@vault.Description</td>
             @if (vault.IsCurrentUserVaultAdmin)
             {
@@ -26,7 +26,7 @@
                     @if (vault.HasAccessLogs)
                     {
                         <span> / </span>
-                        <span>@Html.ActionLink("Access logs", "AccessLogs", new {id = vault.Id})</span>
+                        <span>@Html.ActionLink("Access logs", "AccessLogs", new { id = vault.Id })</span>
                     }
                 </td>
             }
