@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
+    using Entities;
 
     public class VaultConfigurationViewModel
     {
@@ -23,6 +24,7 @@
         [Display(Name = "Close time")]
         public TimeSpan? CloseTime { get; set; }
 
-        public List<int> Users { get; set; }
+        public int[] SelectedUsers { get; set; }
+        public List<User> Users { get; set; }
     }
 }

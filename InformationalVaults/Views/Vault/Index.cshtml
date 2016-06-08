@@ -17,16 +17,16 @@
     {
         <tr>
             <td>@vault.Id</td>
-            <td>@Html.ActionLink(vault.Name, "Details", new { vaultId = vault.Id })</td>
+            <td>@Html.ActionLink(vault.Name, "Details", new { id = vault.Id })</td>
             <td>@vault.Description</td>
             @if (vault.IsCurrentUserVaultAdmin)
             {
                 <td>
-                    <span>@Html.ActionLink("Configure", "Configure", new {vaultId = vault.Id})</span>
+                    <span>@Html.ActionLink("Configure", "Configure", new {id = vault.Id})</span>
                     @if (vault.HasAccessLogs)
                     {
                         <span> / </span>
-                        <span>@Html.ActionLink("Access logs", "AccessLogs", new { vaultId = vault.Id })</span>
+                        <span>@Html.ActionLink("Access logs", "AccessLogs", new { id = vault.Id })</span>
                     }
                 </td>
             }

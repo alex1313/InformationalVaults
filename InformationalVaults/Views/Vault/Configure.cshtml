@@ -41,7 +41,9 @@
 
     <div class="form-group">
         <label for="VaultUsers">Users who have access</label>
-        <div><select class="form-control" name="Users" id="VaultUsers" data-url="@Url.Action("GetUserNames", "Account")"></select></div>
+        <div>
+            @Html.ListBoxFor(x => x.SelectedUsers, new SelectList(Model.Users, "Id", "Email"), new { multiple = "multiple", @id = "VaultUsers" })
+        </div>
     </div>
 
     <div>
@@ -63,16 +65,6 @@
             date: false
         });
 
-        var userConrol = $('#VaultUsers');
-        $.getJSON(userConrol.data('url')).done(
-            function (data) {
-                userConrol.select2({
-                    placeholder: 'Type user email',
-                    allowClear: true,
-                    multiple: true,
-                    data: data
-                });
-            }
-        );
+        $('#VaultUsers').select2({ placeholder: 'Type user email' });
     </script>
 }

@@ -45,8 +45,8 @@ textarea { max-width: 280px; }
     color: #f00;
 }
 
-.form-group .select2 {
-    min-width: 280px;
+.form-group .select2-container {
+    width: 280px;
 }
 
 .form-horizontal .control-label {

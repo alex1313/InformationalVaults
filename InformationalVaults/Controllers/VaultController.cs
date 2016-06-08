@@ -12,9 +12,11 @@
     public class VaultController : BaseController
     {
         private readonly ISendAlertService _sendAlertService;
+        private readonly IVaultAccessService _vaultAccessService;
 
-        public VaultController(ISendAlertService sendAlertService)
+        public VaultController(IVaultAccessService vaultAccessService, ISendAlertService sendAlertService)
         {
+            _vaultAccessService = vaultAccessService;
             _sendAlertService = sendAlertService;
         }
 
@@ -29,10 +31,10 @@
             return View(vaultViewModels);
         }
 
-        public ActionResult Details(int vaultId)
+        public ActionResult Details(int id)
         {
             var vaultViewModel = QueryBuilder.ResultingIn<VaultViewModel>()
-                .Execute(new IdCriterion(vaultId));
+                .Execute(new IdCriterion(id));
 
             if (vaultViewModel == null)
                 return RedirectToAction("Index");
@@ -40,20 +42,24 @@
             var currentUser = QueryBuilder.ResultingIn<User>()
                 .Execute(new NameCriterion(User.Identity.Name));
 
-            var addVaultAccessLogContext = new AddVaultAccessLogContext(currentUser.Id, vaultId);
+            var addVaultAccessLogContext = new AddVaultAccessLogContext(currentUser.Id, id);
             CommandBuilder.Execute(addVaultAccessLogContext);
 
             if (addVaultAccessLogContext.CreatedVaultAccessLog.IsAccessDenied)
-                _sendAlertService.CreateAndSendAccessDeniedAlert(addVaultAccessLogContext.CreatedVaultAccessLog, vaultViewModel.AdminEmail);
+                _sendAlertService.CreateAndSendAccessDeniedAlert(addVaultAccessLogContext.CreatedVaultAccessLog,
+                    vaultViewModel.AdminEmail);
 
             return View(vaultViewModel);
         }
 
-        public ActionResult Configure(int vaultId)
+        public ActionResult Configure(int id)
         {
+            if (IsCurrentUserVaultAdmin(id) == false)
+                return RedirectToAction("Index");
+
             var vaultConfigurationViewModel = QueryBuilder
                 .ResultingIn<VaultConfigurationViewModel>()
-                .Execute(new IdCriterion(vaultId));
+                .Execute(new IdCriterion(id));
 
             return View(vaultConfigurationViewModel);
         }
@@ -61,6 +67,9 @@
         [HttpPost]
         public ActionResult Configure(VaultConfigurationViewModel viewModel)
         {
+            if (IsCurrentUserVaultAdmin(viewModel.Id) == false)
+                return RedirectToAction("Index");
+
             if (ModelState.IsValid)
             {
                 CommandBuilder.Execute(new UpdateVaultConfigurationContext(viewModel));
@@ -71,15 +80,19 @@
             return View(viewModel);
         }
 
-        public ActionResult AccessLogs(int vaultId)
+        public ActionResult AccessLogs(int id)
         {
+            if (IsCurrentUserVaultAdmin(id) == false)
+                return RedirectToAction("Index");
+
             var vaultAccessLogViewModels = QueryBuilder
                 .ResultingIn<VaultAccessLogViewModel[]>()
-                .Execute(new GetVaultAccessLogViewModelsForLastDayContext(vaultId));
+                .Execute(new GetVaultAccessLogViewModelsForLastDayContext(id));
 
             return View(vaultAccessLogViewModels);
         }
 
+        [Authorize(Roles = RoleNames.Administrator)]
         public ActionResult VaultAdmins()
         {
             var usersRolesViewModel = QueryBuilder
@@ -90,12 +103,23 @@
         }
 
         [HttpPost]
-        [Authorize(Roles=RoleNames.Administrator)]
+        [Authorize(Roles = RoleNames.Administrator)]
         public ActionResult VaultAdmins(VaultAdminsViewModel[] viewModel)
         {
             CommandBuilder.Execute(new UpdateAdminsOfVaultsContext(viewModel));
 
             return RedirectToAction("Index", "Vault");
+        }
+
+        private bool IsCurrentUserVaultAdmin(int vaultId)
+        {
+            var currentUser = QueryBuilder.ResultingIn<User>()
+                .Execute(new NameCriterion(User.Identity.Name));
+
+            var vault = QueryBuilder.ResultingIn<Vault>()
+                .Execute(new IdCriterion(vaultId));
+
+            return _vaultAccessService.IsUserVaultAdmin(currentUser, vault);
         }
     }
 }

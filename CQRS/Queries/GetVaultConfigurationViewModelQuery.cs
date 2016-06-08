@@ -11,9 +11,14 @@
             using (var uow = UnitOfWorkFactory.Create())
             {
                 var vault = uow.VaultRepository.GetById(criterion.Id);
+
+                var allUsers = uow.UserRepository
+                    .GetAll()
+                    .ToList();
+
                 var vaultUserIds = vault.Users
                     .Select(x => x.Id)
-                    .ToList();
+                    .ToArray();
 
                 return new VaultConfigurationViewModel
                 {
@@ -22,7 +27,8 @@
                     Description = vault.Description,
                     OpenTime = vault.OpenTime,
                     CloseTime = vault.CloseTime,
-                    Users = vaultUserIds
+                    Users = allUsers,
+                    SelectedUsers = vaultUserIds
                 };
             }
         }

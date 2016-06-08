@@ -18,7 +18,7 @@
                 vault.CloseTime = configuration.CloseTime;
 
                 vault.Users.Clear();
-                foreach (var userId in configuration.Users)
+                foreach (var userId in configuration.SelectedUsers)
                 {
                     var user = uow.UserRepository.GetById(userId);
                     vault.Users.Add(user);

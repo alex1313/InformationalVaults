@@ -94,6 +94,7 @@
     <Compile Include="Queries\GetAllVaultViewModelsQuery.cs" />
     <Compile Include="Queries\GetUserByNameQuery.cs" />
     <Compile Include="Queries\GetVaultAdminsViewModelQuery.cs" />
+    <Compile Include="Queries\GetVaultByIdQuery.cs" />
     <Compile Include="Queries\GetVaultConfigurationViewModelQuery.cs" />
     <Compile Include="Queries\GetVaultViewModelByIdQuery.cs" />
     <Compile Include="Queries\Infrastructure\QueryDescriptor.cs" />
