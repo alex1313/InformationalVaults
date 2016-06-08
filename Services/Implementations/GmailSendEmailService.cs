@@ -7,27 +7,19 @@ namespace Services.Implementations
     {
         public void SendEmail(string senderAddress, string senderPassword, string recipientAddress, string subject, string body)
         {
-            var senderMailAddress = new MailAddress(senderAddress);
-
-            var recipientMailAddress = new MailAddress(recipientAddress);
-
-            var smtp = new SmtpClient
+            using (var mail = new MailMessage())
             {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(recipientMailAddress.Address, senderPassword)
-            };
+                mail.From = new MailAddress(senderAddress);
+                mail.To.Add(recipientAddress);
+                mail.Subject = subject;
+                mail.Body = body;
 
-            using (var mail = new MailMessage(senderMailAddress, recipientMailAddress)
-            {
-                Subject = subject,
-                Body = body
-            })
-            {
-                smtp.Send(mail);
+                using (var smtp = new SmtpClient("smtp.gmail.com", 587))
+                {
+                    smtp.Credentials = new NetworkCredential(senderAddress, senderPassword);
+                    smtp.EnableSsl = true;
+                    smtp.Send(mail);
+                }
             }
         }
     }
