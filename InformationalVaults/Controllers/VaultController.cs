@@ -46,8 +46,11 @@
             CommandBuilder.Execute(addVaultAccessLogContext);
 
             if (addVaultAccessLogContext.CreatedVaultAccessLog.IsAccessDenied)
-                _sendAlertService.CreateAndSendAccessDeniedAlert(addVaultAccessLogContext.CreatedVaultAccessLog,
-                    vaultViewModel.AdminEmail);
+            {
+                _sendAlertService.CreateAndSendAccessDeniedAlert(addVaultAccessLogContext.CreatedVaultAccessLog, vaultViewModel.AdminEmail);
+
+                return RedirectToAction("AccessDenied");
+            }
 
             return View(vaultViewModel);
         }
@@ -109,6 +112,11 @@
             CommandBuilder.Execute(new UpdateAdminsOfVaultsContext(viewModel));
 
             return RedirectToAction("Index", "Vault");
+        }
+
+        public ActionResult AccessDenied()
+        {
+            return View();
         }
 
         private bool IsCurrentUserVaultAdmin(int vaultId)
