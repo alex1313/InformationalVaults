@@ -6,7 +6,7 @@
 
 <h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm("Manage", "Role", FormMethod.Post, new {@class = "form-horizontal" }))
+@using (Html.BeginForm("Manage", "Role", FormMethod.Post, new {@class = "form-horizontal"}))
 {
     for (var i = 0; i < Model.Length; i++)
     {
@@ -19,7 +19,7 @@
             </label>
 
             <div class="col-md-10 form-input">
-                @Html.DropDownListFor(x => x[i].RoleId, user.Roles, new {@class="form-control" })
+                @Html.DropDownListFor(x => x[i].RoleId, user.Roles, new {@class = "form-control"})
             </div>
         </div>
     }

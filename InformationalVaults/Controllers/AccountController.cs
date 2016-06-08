@@ -1,11 +1,7 @@
 ﻿namespace InformationalVaults.Controllers
 {
-    using System.Linq;
     using System.Web.Mvc;
     using System.Web.Security;
-    using CQRS.Queries.Criteria;
-    using DomainModel.Definitions;
-    using DomainModel.Entities;
     using Models;
     using Providers;
 

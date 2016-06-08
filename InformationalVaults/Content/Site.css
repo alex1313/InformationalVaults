@@ -19,36 +19,24 @@ textarea { max-width: 280px; }
     padding-top: 5px;
 }
 
-.field-validation-error {
-    color: #f00;
-}
+.field-validation-error { color: #f00; }
 
-.field-validation-valid {
-    display: none;
-}
+.field-validation-valid { display: none; }
 
 .input-validation-error {
-    border: 1px solid #f00;
     background-color: #fee;
+    border: 1px solid #f00;
 }
 
 .validation-summary-errors {
+    color: #f00;
     font-weight: bold;
-    color: #f00;
 }
 
-.validation-summary-valid {
-    display: none;
-}
+.validation-summary-valid { display: none; }
 
-.denied-access-log {
-    color: #f00;
-}
+.denied-access-log { color: #f00; }
 
-.form-group .select2-container {
-    width: 280px;
-}
+.form-group .select2-container { width: 280px; }
 
-.form-horizontal .control-label {
-    text-align: left;
-}
+.form-horizontal .control-label { text-align: left; }

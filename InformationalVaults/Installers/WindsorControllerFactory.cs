@@ -27,7 +27,7 @@
                 throw new HttpException(404,
                     $"The controller for path '{requestContext.HttpContext.Request.Path}' could not be found.");
             }
-            return (IController)_kernel.Resolve(controllerType);
+            return (IController) _kernel.Resolve(controllerType);
         }
     }
 }

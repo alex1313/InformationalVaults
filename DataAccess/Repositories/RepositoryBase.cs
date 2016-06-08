@@ -19,9 +19,9 @@
         }
 
         public virtual IEnumerable<T> Get(
-           Expression<Func<T, bool>> filter = null,
-           Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-           string includeProperties = "")
+            Expression<Func<T, bool>> filter = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+            string includeProperties = "")
         {
             IQueryable<T> query = DbSet;
 
@@ -30,7 +30,7 @@
                 query = query.Where(filter);
             }
 
-            var separators = new[] { ',' };
+            var separators = new[] {','};
             foreach (var property in includeProperties.Split(separators, StringSplitOptions.RemoveEmptyEntries))
             {
                 query = query.Include(property);

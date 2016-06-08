@@ -6,21 +6,21 @@
 
 <table class="table table-striped">
     <thead>
-        <tr>
-            <th>Vault name</th>
-            <th>@Html.DisplayNameFor(x => x.FirstOrDefault().DateTimeStamp)</th>
-            <th>User name</th>
-        </tr>
+    <tr>
+        <th>Vault name</th>
+        <th>@Html.DisplayNameFor(x => x.FirstOrDefault().DateTimeStamp)</th>
+        <th>User name</th>
+    </tr>
     </thead>
-        @foreach (var accessLog in Model)
-        {
-            var rowClass = @accessLog.IsAccessDenied ? "denied-access-log" : string.Empty;
-                
-            <tr class=@rowClass>
-                <td>@accessLog.VaultName</td>
-                <td>@accessLog.DateTimeStamp</td>
-                <td>@accessLog.UserName</td>
-            </tr>
-        }
+    @foreach (var accessLog in Model)
+    {
+        var rowClass = @accessLog.IsAccessDenied ? "denied-access-log" : string.Empty;
+
+        <tr class=@rowClass>
+            <td>@accessLog.VaultName</td>
+            <td>@accessLog.DateTimeStamp</td>
+            <td>@accessLog.UserName</td>
+        </tr>
+    }
     </tbody>
 </table>

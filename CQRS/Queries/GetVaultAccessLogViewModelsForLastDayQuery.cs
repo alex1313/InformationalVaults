@@ -5,7 +5,8 @@
     using Criteria;
     using DomainModel.ViewModels;
 
-    public class GetVaultAccessLogViewModelsForLastDayQuery : QueryBase<GetVaultAccessLogViewModelsForLastDayContext, VaultAccessLogViewModel[]>
+    public class GetVaultAccessLogViewModelsForLastDayQuery :
+        QueryBase<GetVaultAccessLogViewModelsForLastDayContext, VaultAccessLogViewModel[]>
     {
         public override VaultAccessLogViewModel[] Execute(GetVaultAccessLogViewModelsForLastDayContext criterion)
         {

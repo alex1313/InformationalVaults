@@ -10,7 +10,7 @@
 {
     <div class="form-group">
         @Html.LabelFor(x => x.Email)
-        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+        @Html.TextBoxFor(x => x.Email, new {@class = "form-control"})
         @Html.ValidationMessageFor(x => x.Email)
     </div>
 
@@ -22,8 +22,8 @@
 
     <div class="checkbox">
         <label>
-            <input id="RememberMe" type="checkbox" value="true" name="RememberMe" />
-            <input type="hidden" value="false" name="RememberMe" />
+            <input id="RememberMe" type="checkbox" value="true" name="RememberMe"/>
+            <input type="hidden" value="false" name="RememberMe"/>
             Remember me
         </label>
     </div>
@@ -32,5 +32,5 @@
         @Html.ValidationMessage("")
     </div>
 
-    <input class="btn btn-primary" type="submit" value="Log in" />
+    <input class="btn btn-primary" type="submit" value="Log in"/>
 }

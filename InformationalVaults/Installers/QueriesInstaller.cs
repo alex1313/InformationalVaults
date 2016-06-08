@@ -10,11 +10,11 @@
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.AddFacility<TypedFactoryFacility>();;
+            container.AddFacility<TypedFactoryFacility>();
 
             var queires = Classes
                 .FromAssemblyInDirectory(new AssemblyFilter("./bin", "CQRS*"))
-                .BasedOn(typeof(IQuery<,>))
+                .BasedOn(typeof (IQuery<,>))
                 .WithServiceAllInterfaces()
                 .LifestyleTransient();
 
@@ -22,7 +22,9 @@
                 queires,
                 Component.For<IQueryBuilder>().AsFactory().LifestyleSingleton(),
                 Component.For<IQueryFactory>().AsFactory().LifestyleSingleton(),
-                Component.For(typeof(IQueryDescriptor<>)).ImplementedBy(typeof(QueryDescriptor<>)).LifestyleSingleton()
+                Component.For(typeof (IQueryDescriptor<>))
+                    .ImplementedBy(typeof (QueryDescriptor<>))
+                    .LifestyleSingleton()
                 );
         }
     }

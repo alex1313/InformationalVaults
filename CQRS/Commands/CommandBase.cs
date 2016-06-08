@@ -4,7 +4,8 @@ namespace CQRS.Commands
     using Infrastructure;
     using Queries.Infrastructure;
 
-    public abstract class CommandBase<TCommandContext> : ICommand<TCommandContext> where TCommandContext : class, ICommandContext
+    public abstract class CommandBase<TCommandContext> : ICommand<TCommandContext>
+        where TCommandContext : class, ICommandContext
     {
         public IUnitOfWorkFactory UnitOfWorkFactory { get; set; }
 
